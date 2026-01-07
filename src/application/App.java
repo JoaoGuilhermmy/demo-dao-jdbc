@@ -23,5 +23,11 @@ public class App {
             IO.println(s);
         }
 
+        IO.println("\n==== TEST 3: seller findAll ====");
+        list = sellerDao.findAll();
+        for (Seller s : list) {
+            IO.println(s);
+        }
+
     }
 }
