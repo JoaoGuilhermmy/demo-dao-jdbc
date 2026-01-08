@@ -25,6 +25,11 @@ public class App2 {
             System.out.println(d);
         }
 
+        System.out.println("\n==== TEST 3: department insert ====");
+        Department newdep = new Department(null, "Construction");
+        departmentDao.insert(newdep);
+        System.out.println("Insert completed!");
+
         sc.close();
     }
 }
