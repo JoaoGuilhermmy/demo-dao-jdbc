@@ -28,8 +28,19 @@ public class App2 {
         System.out.println("\n==== TEST 3: department insert ====");
         Department newdep = new Department(null, "Construction");
         departmentDao.insert(newdep);
-        System.out.println("Insert completed!");
+        System.out.println("Inserted! New id = " + newdep.getId());
 
+        System.out.println("\n==== TEST 4: department update ====");
+        Department dep2 = departmentDao.findById(1);
+        dep2.setName("Maneger");
+        departmentDao.update(dep2);
+        System.out.println("Update completed!");
+
+        System.out.println("\n==== TESTE 5: department delete ====");
+        System.out.print("Enter the ID to delete the department: ");
+        int id = sc.nextInt();
+        departmentDao.delete(id);
+        System.out.println("Delete completed");
         sc.close();
     }
 }
