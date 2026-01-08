@@ -10,8 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.mysql.cj.protocol.a.SqlDateValueEncoder;
-
 import db.DB;
 import db.DbException;
 import model.dao.SellerDao;
