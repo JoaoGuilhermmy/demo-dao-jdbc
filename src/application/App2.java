@@ -1,5 +1,6 @@
 package application;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -15,10 +16,14 @@ public class App2 {
         DepartmentDao departmentDao = DaoFactory.creatDepartmentDao();
 
         System.out.println("==== TEST 1: department findbyid ====");
-        System.out.print("Enter for Id department: ");
-        int id = sc.nextInt();
-        Department dep = departmentDao.findById(id);
+        Department dep = departmentDao.findById(1);
         System.out.println(dep);
+
+        System.out.println("\n==== TEST 2: department findall ====");
+        List<Department> list = departmentDao.findAll();
+        for (Department d : list) {
+            System.out.println(d);
+        }
 
         sc.close();
     }

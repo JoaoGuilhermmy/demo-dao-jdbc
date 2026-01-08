@@ -51,8 +51,9 @@ public class DepartmentDaoJDBC implements DepartmentDao {
                 department.setId(rs.getInt("Id"));
                 department.setName(rs.getString("Name"));
                 return department;
+            } else {
+                throw new DbException("Error! Id not found");
             }
-            return null;
 
         } catch (SQLException e) {
             throw new DbException(e.getMessage());
@@ -65,9 +66,25 @@ public class DepartmentDaoJDBC implements DepartmentDao {
 
     @Override
     public List<Department> findAll() {
-        System.out.println("Hello");
-        List<Department> list = new ArrayList<>();
-        return list;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            st = conn.prepareStatement("SELECT * FROM department ORDER BY Name");
+            rs = st.executeQuery();
+            List<Department> list = new ArrayList<>();
+
+            while (rs.next()) {
+                Department dep = new Department(rs.getInt("Id"), rs.getString("Name"));
+                list.add(dep);
+            }
+            return list;
+
+        } catch (SQLException e) {
+            throw new DbException(e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
     }
 
 }
